@@ -14,6 +14,7 @@ def main():
     while not game_arena.finished:
         game_player.scan_input()
         game_player.act(game_arena)
+        ai_player.act(game_arena)
         if time.time() - turn_start > 1:
             game_arena.update()
             turn += 1

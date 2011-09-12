@@ -3,7 +3,8 @@ class Creature:
     def __init__(self):
         self.pos_x = None
         self.pos_y = None
-
+        self.damage = 1
+        
     def update(self):
         pass
 
@@ -17,5 +18,5 @@ class NoobSauce(Creature):
 
     def update(self):
         Creature.update(self)
-        self.pos_x += 1
+        self.pos_y += 1
     

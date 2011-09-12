@@ -1,0 +1,17 @@
+game logic
+
+creature owned bu players
+damage players when  creature leaves on their side
+creature customization - feet, body, weapon, brain 
+
+feet: forward, diagonal
+body: tough, light
+weapon: hit forward, hit sideways
+brain: turn left, turn right
+
+creature lifespan (dies after a number of turns)
+obstacles
+
+gfx - pygame
+
+ai - stupid, may cheat
