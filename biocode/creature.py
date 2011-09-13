@@ -19,5 +19,5 @@ class NoobSauce(Creature):
 
     def update(self):
         Creature.update(self)
-        self.pos_y += 1
+        self.pos_x += 1
     

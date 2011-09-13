@@ -1,6 +1,5 @@
 game logic
 
-creature owned bu players
 damage players when  creature leaves on their side
 creature customization - feet, body, weapon, brain 
 
