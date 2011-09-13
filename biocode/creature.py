@@ -1,9 +1,10 @@
 class Creature:
     
-    def __init__(self):
+    def __init__(self, player_number):
         self.pos_x = None
         self.pos_y = None
         self.damage = 1
+        self.player = player_number
         
     def update(self):
         pass
@@ -13,8 +14,8 @@ class Creature:
     
 class NoobSauce(Creature):
 
-    def __init__(self):
-        Creature.__init__(self)
+    def __init__(self, player_number):
+        Creature.__init__(self, player_number)
 
     def update(self):
         Creature.update(self)

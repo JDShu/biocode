@@ -16,7 +16,7 @@ class Player:
                 try:
                     x = int(command[1])
                     if 0 <= x < 10:
-                        arena.add_creature(creature.NoobSauce(),(x,0))
+                        arena.add_creature(creature.NoobSauce(self.player_number),(x,0))
                 except ValueError:
                     print "invalid command"
 
@@ -32,17 +32,5 @@ class Human(Player):
         if self.action:
             print self.action
 
-    def act(self, arena):
-        if self.action:
-            command = self.action.split()
-            print command
-            if command[0] == "place":
-                try:
-                    x = int(command[1])
-                    if 0 <= x < 10:
-                        arena.add_creature(creature.NoobSauce(),(x,0))
-                except ValueError:
-                    print "invalid command"    
-                    
 class AI(Player):
     pass
