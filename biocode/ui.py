@@ -5,9 +5,6 @@ from pygame.locals import *
 class Scanner:
 
     def __init__(self):
-        pygame.init()
-        self.screen = pygame.display.set_mode((100,100))
-        pygame.display.set_caption("Biocode")
         print "init"
         self.command = []
         self.player_action = None

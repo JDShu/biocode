@@ -28,14 +28,7 @@ class Arena:
                 self.creatures.remove(c)
             else:
                 self.place_creature(c, (c.pos_x,c.pos_y))
-        for row in self.map:
-            for item in row:
-                if item:
-                    print "X",
-                else:
-                    print "0",
-            print ""
-            
+                   
     def add_creature(self, creature, pos):
         creature.set_pos(pos)
         self.creatures.append(creature)
