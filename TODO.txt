@@ -1,5 +1,7 @@
 game logic
 
+gui
+
 creature customization - feet, body, weapon, brain 
 
 feet: forward, diagonal

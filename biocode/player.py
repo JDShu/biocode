@@ -2,6 +2,11 @@ import ui
 import creature
 import base
 
+STARTING_DIRECTION = {base.BOTTOM: creature.Direction.UP,
+                      base.TOP: creature.Direction.DOWN,
+                      base.LEFT: creature.Direction.RIGHT,
+                      base.RIGHT: creature.Direction.LEFT}
+
 class Type:
     HUMAN = 0
     AI = 1
@@ -21,9 +26,12 @@ class Player:
             print command
             if command[0] == "place":
                 try:
-                    y = int(command[1])
-                    if 0 <= y < arena.l:
-                        arena.add_creature(creature.NoobSauce(self.player_number),(0,y))
+                    i = int(command[1])
+                    if self.base == base.TOP:
+                        place = (i,0)
+                    elif self.base == base.BOTTOM:
+                        place = (i,arena.l-1)
+                    arena.add_creature(creature.NoobSauce(self.player_number,STARTING_DIRECTION[self.base]),place)
                 except ValueError:
                     print "invalid command"
 

@@ -17,9 +17,9 @@ class Game:
         self.turn = 0
         self.turn_start = time.time()
         self.player_1 = PLAYER_DICT[player_1](1)
-        self.player_1.base = base.LEFT
+        self.player_1.base = base.BOTTOM
         self.player_2 = PLAYER_DICT[player_2](2)
-        self.player_2.base = base.RIGHT
+        self.player_2.base = base.TOP
         
     def main(self):
         while not self.game_arena.finished:

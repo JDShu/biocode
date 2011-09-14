@@ -21,10 +21,10 @@ class Arena:
                 self.turn_results += [Result(Result.EXIT_RIGHT, c)]
                 self.creatures.remove(c)
             elif c.pos_y < 0:
-                self.turn_results += [Result(Result.EXIT_UP, c)]
+                self.turn_results += [Result(Result.EXIT_TOP, c)]
                 self.creatures.remove(c)
             elif c.pos_y >= self.l:
-                self.turn_results += [Result(Result.EXIT_DOWN, c)]
+                self.turn_results += [Result(Result.EXIT_BOTTOM, c)]
                 self.creatures.remove(c)
             else:
                 self.place_creature(c, (c.pos_x,c.pos_y))
@@ -44,11 +44,16 @@ class Arena:
                 damage(players, base.LEFT, r.argument.damage)
             elif r.result_type == Result.EXIT_RIGHT:
                 damage(players, base.RIGHT, r.argument.damage)
+            elif r.result_type == Result.EXIT_TOP:
+                damage(players, base.TOP, r.argument.damage)
+            elif r.result_type == Result.EXIT_BOTTOM:
+                damage(players, base.BOTTOM, r.argument.damage)
+       
         self.turn_results = []
 
 class Result:
     
-    EXIT_UP, EXIT_DOWN, EXIT_LEFT, EXIT_RIGHT = range(4)
+    EXIT_TOP, EXIT_BOTTOM, EXIT_LEFT, EXIT_RIGHT = range(4)
 
     def __init__(self, result_type, argument):
         self.result_type = result_type
