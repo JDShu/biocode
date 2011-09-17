@@ -1,6 +1,6 @@
 import base
 import dimensions
-from creature import BEHIND, LEFT, RIGHT
+from creature import BEHIND, LEFT, RIGHT, Direction
 
 class Arena:
 
@@ -29,22 +29,45 @@ class Arena:
                 self.creatures.remove(c)
             else:
                 self.place_creature(c, (c.pos_x,c.pos_y))
-
+        self.combat()
+                
     def combat(self):
         #determine threat spaces list (coords and direction for each)
         threat_spaces = []
         for c in self.creatures:
-            if threat_area[0]:
+            if c.threat_area[0]:
                 threat_spaces += [(c.pos_x,c.pos_y,c.direction,c.damage)]
-            elif threat_area[1]:
+            elif c.threat_area[1]:
                 threat_spaces += [(c.pos_x,c.pos_y,BEHIND[c.direction],c.damage)]
-            elif threat_area[2]:
+            elif c.threat_area[2]:
                 threat_spaces += [(c.pos_x,c.pos_y,LEFT[c.direction],c.damage)]
-            elif threat_area[3]:
+            elif c.threat_area[3]:
                 threat_spaces += [(c.pos_x,c.pos_y,RIGHT[c.direction],c.damage)]
+
+        for t in threat_spaces:
+            try:
+                if t[2] == Direction.UP:
+                    if self.map[t[0]][t[1]-1]:
+                        self.process_damage(self.map[t[0]][t[1]-1],c.damage)
+                    elif t[2] == Direction.DOWN:
+                        if self.map[t[0]][t[1]+1]:
+                            self.process_damage(self.map[t[0]][t[1]+1],c.damage)
+                    elif t[2] == Direction.LEFT:
+                        if self.map[t[0]-1][t[1]]:
+                            self.process_damage(self.map[t[0]-1][t[1]],c.damage)
+                    elif t[2] == Direction.RIGHT:
+                        if self.map[t[0]+1][t[1]]:
+                            self.process_damage(self.map[t[0]+1][t[1]],c.damage)
+            except IndexError:
+                pass
+                            
+    def process_damage(self, creature, damage):
+        creature.health -= damage
+        print creature, "damaged for", damage, "with", creature.health, "health left."
+        if creature.health <= 0:
+            self.creatures.remove(creature)
+            self.place_creature(None, (creature.pos_x, creature.pos_y))
             
-#resolve damage on creatures
-    
     def add_creature(self, creature, pos):
         creature.set_pos(pos)
         self.creatures.append(creature)
