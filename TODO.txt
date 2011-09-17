@@ -1,17 +1,20 @@
 game logic
 
 gui
+player health
 
-creature customization - feet, body, weapon, brain 
-
-feet: forward, diagonal
-body: tough, light
-weapon: hit forward, hit sideways
-brain: turn left, turn right
+resources
 
 creature lifespan (dies after a number of turns)
 obstacles
 
-gfx - pygame
+combat
+if way is blocked, wait
+damage adjacent
 
-ai - stupid, may cheat
+gfx:
+draw monstes + parts
+
+ai:
+
+levels: creatures per turn

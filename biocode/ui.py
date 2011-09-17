@@ -8,7 +8,6 @@ import panel
 class Scanner:
 
     def __init__(self, panel=None):
-        print "init"
         self.command = []
         self.player_action = None
         self.panel = panel
@@ -28,8 +27,7 @@ class Scanner:
 
             for e in pygame.event.get(MOUSEBUTTONDOWN):
                 pos = pygame.mouse.get_pos()
-                print pos
-            
+                            
         else:
             self.player_action = self.panel.scan()
         

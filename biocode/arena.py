@@ -1,6 +1,6 @@
-from collections import deque
 import base
 import dimensions
+from creature import BEHIND, LEFT, RIGHT
 
 class Arena:
 
@@ -14,7 +14,7 @@ class Arena:
     def update(self):
         for c in self.creatures:
             self.place_creature(None, (c.pos_x,c.pos_y))
-            c.update()
+            c.update(self.map)
             if c.pos_x < 0:
                 self.turn_results += [Result(Result.EXIT_LEFT, c)]
                 self.creatures.remove(c)
@@ -29,13 +29,27 @@ class Arena:
                 self.creatures.remove(c)
             else:
                 self.place_creature(c, (c.pos_x,c.pos_y))
-                   
+
+    def combat(self):
+        #determine threat spaces list (coords and direction for each)
+        threat_spaces = []
+        for c in self.creatures:
+            if threat_area[0]:
+                threat_spaces += [(c.pos_x,c.pos_y,c.direction,c.damage)]
+            elif threat_area[1]:
+                threat_spaces += [(c.pos_x,c.pos_y,BEHIND[c.direction],c.damage)]
+            elif threat_area[2]:
+                threat_spaces += [(c.pos_x,c.pos_y,LEFT[c.direction],c.damage)]
+            elif threat_area[3]:
+                threat_spaces += [(c.pos_x,c.pos_y,RIGHT[c.direction],c.damage)]
+            
+#resolve damage on creatures
+    
     def add_creature(self, creature, pos):
         creature.set_pos(pos)
         self.creatures.append(creature)
         self.place_creature(creature, pos)
-        print "place at", pos
-        
+                
     def place_creature(self, creature, pos):
         self.map[pos[0]][pos[1]] = creature
 

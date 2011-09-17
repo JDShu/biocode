@@ -28,6 +28,7 @@ class Game:
 
     def update(self):
         self.player_1.scan_input()
+        self.player_2.scan_input()
         self.player_1.act(self.game_arena)
         self.player_2.act(self.game_arena)
         if time.time() - self.turn_start > 1:
@@ -35,6 +36,9 @@ class Game:
         self.drawer.draw(self.game_arena, self.player_1.scanner.panel)
 
     def do_turn(self):
+        self.player_1.do_turn()
+        self.player_2.do_turn()
+
         self.game_arena.update()
         self.game_arena.execute_results(self.player_1, self.player_2)
         self.turn += 1

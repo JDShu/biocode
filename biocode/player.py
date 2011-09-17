@@ -2,6 +2,7 @@ import ui
 import creature
 import base
 import panel
+import selector
 
 STARTING_DIRECTION = {base.BOTTOM: creature.Direction.UP,
                       base.TOP: creature.Direction.DOWN,
@@ -24,7 +25,6 @@ class Player:
     def act(self, arena):
         if self.action:
             command = self.action.split()
-            print command
             if command[0] == "place":
                 try:
                     i = int(command[1])
@@ -36,7 +36,11 @@ class Player:
                     arena.add_creature(creature.CustomCreature(self.player_number,STARTING_DIRECTION[self.base], components), place)
                 except ValueError:
                     print "invalid command"
+            self.action = None
 
+    def do_turn(self):
+        pass
+                    
 class Human(Player):
     
     def __init__(self, player_number, arena, health=10):
@@ -49,15 +53,27 @@ class Human(Player):
             print self.action
 
 class AI(Player):
-    def __init__(self, player_number, arena, health=10):
+    def __init__(self, player_number, arena, health=10, period=2, creature_per_turn=1):
         Player.__init__(self,player_number, health)
+        self.period = period
+        self.count = period
+        self.selector = selector.Selector()
         
     def scan_input(self):
-        pass
+        if self.count == 0:
+            self.count = self.period
+            self.selector.random_component()
+            self.action = self.selector.place()
+        if self.action:
+            print self.action
+            
+    def do_turn(self):
+        self.count -= 1
+        self.action = None
         
 class Test(Player):
     def __init__(self, player_number, arena, health=10):
-        Player.__init__(self,player_number, health)        
+        Player.__init__(self,player_number, health)
         self.command = None
         self.repeat = 0
 
