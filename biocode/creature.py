@@ -36,5 +36,11 @@ class NoobSauce(Creature):
     
 class CustomCreature(Creature):
     def __init__(self, player_number, direction, components):
-        pass
-    
+        self.brain = components[0]
+        self.body = components[1]
+        self.weapon = components[2]
+        self.feet = components[3]
+        Creature.__init__(self, player_number, direction)
+        
+    def update(self):
+        self.forward()

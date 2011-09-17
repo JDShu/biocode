@@ -1,0 +1,2 @@
+CELL_W = 50
+CELL_H = 50

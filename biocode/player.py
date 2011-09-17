@@ -32,7 +32,8 @@ class Player:
                         place = (i,0)
                     elif self.base == base.BOTTOM:
                         place = (i,arena.l-1)
-                    arena.add_creature(creature.NoobSauce(self.player_number,STARTING_DIRECTION[self.base]),place)
+                    components = [command[i] for i in range(2,6)]
+                    arena.add_creature(creature.CustomCreature(self.player_number,STARTING_DIRECTION[self.base], components), place)
                 except ValueError:
                     print "invalid command"
 

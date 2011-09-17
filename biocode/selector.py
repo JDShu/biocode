@@ -1,8 +1,4 @@
-BRAINS =["brain1","brain2","brain3"]
-BODIES =["body1","body2","body3"]
-WEAPONS =["weapon1","weapon2","weapon3"]
-FEET =["feet1","feet2","feet3"]
-
+from part_data import *
 
 class Selector:
     PARTS = 4
@@ -24,16 +20,8 @@ class Selector:
 
     def place(self, position):
         print "create at", position
-        return "place " + str(position)
-        
-    def return_creature(self):
-        return ComponentCollection(*[self.component_lists[self.components[x]]
-                                     for x in range(PARTS)])
-
-class ComponentCollection:
-    def __init__(self, brain, body, weapon, feet):
-        self.brain = brain
-        self.body = body
-        self.weapon = weapon
-        self.feet = feet
-        print "new creature:", brain, body, weapon, feet
+        return ("place " + str(position) + " " +
+                self.component_lists[0][self.components[0]] + " " +
+                self.component_lists[1][self.components[1]] + " " +
+                self.component_lists[2][self.components[2]] + " " +
+                self.component_lists[3][self.components[3]])
