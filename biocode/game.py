@@ -4,6 +4,7 @@ import arena
 import gfx
 import player
 import base
+import panel
 
 PLAYER_DICT = {player.Type.HUMAN: player.Human,
                player.Type.AI: player.AI,
@@ -16,9 +17,9 @@ class Game:
         self.drawer = gfx.Drawer(self.game_arena)
         self.turn = 0
         self.turn_start = time.time()
-        self.player_1 = PLAYER_DICT[player_1](1)
+        self.player_1 = PLAYER_DICT[player_1](1,self.game_arena)
         self.player_1.base = base.BOTTOM
-        self.player_2 = PLAYER_DICT[player_2](2)
+        self.player_2 = PLAYER_DICT[player_2](2, self.game_arena)
         self.player_2.base = base.TOP
         
     def main(self):
@@ -31,8 +32,7 @@ class Game:
         self.player_2.act(self.game_arena)
         if time.time() - self.turn_start > 1:
             self.do_turn()
-        self.drawer.draw_arena(self.game_arena)
-        self.drawer.draw_panel(self.player_1.scanner.panel)
+        self.drawer.draw(self.game_arena, self.player_1.scanner.panel)
 
     def do_turn(self):
         self.game_arena.update()

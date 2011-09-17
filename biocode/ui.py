@@ -29,10 +29,10 @@ class Scanner:
             for e in pygame.event.get(MOUSEBUTTONDOWN):
                 pos = pygame.mouse.get_pos()
                 print pos
-            action = self.player_action
+            
         else:
             self.player_action = self.panel.scan()
-                
         
+        action = self.player_action
         self.player_action = None
         return action

@@ -1,6 +1,7 @@
 import ui
 import creature
 import base
+import panel
 
 STARTING_DIRECTION = {base.BOTTOM: creature.Direction.UP,
                       base.TOP: creature.Direction.DOWN,
@@ -37,9 +38,9 @@ class Player:
 
 class Human(Player):
     
-    def __init__(self, player_number, health=10):
+    def __init__(self, player_number, arena, health=10):
         Player.__init__(self,player_number, health)
-        self.scanner = ui.Scanner()
+        self.scanner = ui.Scanner(panel.Panel((200,400),arena)) #magic number
         
     def scan_input(self):
         self.action = self.scanner.scan()
@@ -47,14 +48,14 @@ class Human(Player):
             print self.action
 
 class AI(Player):
-    def __init__(self, player_number, health=10):
+    def __init__(self, player_number, arena, health=10):
         Player.__init__(self,player_number, health)
         
     def scan_input(self):
         pass
         
 class Test(Player):
-    def __init__(self, player_number, health=10):
+    def __init__(self, player_number, arena, health=10):
         Player.__init__(self,player_number, health)        
         self.command = None
         self.repeat = 0
