@@ -21,9 +21,10 @@ class Game:
         self.player_1.base = base.BOTTOM
         self.player_2 = PLAYER_DICT[player_2](2, self.game_arena)
         self.player_2.base = base.TOP
+        self.finished = False
         
     def main(self):
-        while not self.game_arena.finished:
+        while not self.finished:
             self.update()
 
     def update(self):
@@ -33,7 +34,13 @@ class Game:
         self.player_2.act(self.game_arena)
         if time.time() - self.turn_start > 1:
             self.do_turn()
-        self.drawer.draw(self.game_arena, self.player_1.scanner.panel)
+        self.drawer.draw(self.game_arena, self.player_1.scanner.panel, self.player_1, self.player_2)
+        if self.player_1.health < 1:
+            print "player 1 loses"
+            self.finished = True
+        if self.player_2.health < 1:
+            print "player 2 loses"
+            self.finished = True
 
     def do_turn(self):
         self.player_1.do_turn()
@@ -43,8 +50,7 @@ class Game:
         self.game_arena.execute_results(self.player_1, self.player_2)
         self.turn += 1
         self.turn_start = time.time()
-        print "turn", self.turn
-       
+               
 if __name__ == "__main__":
     g = Game(player.Type.HUMAN, player.Type.AI)
     g.main()

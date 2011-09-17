@@ -49,9 +49,7 @@ class Human(Player):
         
     def scan_input(self):
         self.action = self.scanner.scan()
-        if self.action:
-            print self.action
-
+        
 class AI(Player):
     def __init__(self, player_number, arena, health=10, period=2, creature_per_turn=1):
         Player.__init__(self,player_number, health)
@@ -64,9 +62,7 @@ class AI(Player):
             self.count = self.period
             self.selector.random_component()
             self.action = self.selector.place()
-        if self.action:
-            print self.action
-            
+
     def do_turn(self):
         self.count -= 1
         self.action = None
@@ -79,12 +75,10 @@ class Test(Player):
 
     def set_command(self, command, repeat=1):
         self.command = command
-        print "command set to", command
         self.repeat = repeat
         
     def scan_input(self):
         if self.repeat > 0:
-            print self.action
             self.action = self.command
             self.repeat -= 1
         else:

@@ -51,7 +51,7 @@ class Creature:
             if not arena_map[try_x][try_y]:
                 self.pos_x, self.pos_y = try_x, try_y
         except IndexError:
-            pass
+            self.pos_x, self.pos_y = try_x, try_y
                 
     def side(self,arena_map):
         if self.pos_x == 0 or self.pos_x == dimensions.ARENA_W-1:

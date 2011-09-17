@@ -8,23 +8,22 @@ class Arena:
         self.w, self.l = dimensions.ARENA_W, dimensions.ARENA_L
         self.map = [[None]*self.w for i in xrange(self.l)]
         self.creatures = []
-        self.finished = False
         self.turn_results = []
         
     def update(self):
         for c in self.creatures:
             self.place_creature(None, (c.pos_x,c.pos_y))
             c.update(self.map)
-            if c.pos_x < 0:
+            if c.pos_x == 0:
                 self.turn_results += [Result(Result.EXIT_LEFT, c)]
                 self.creatures.remove(c)
-            elif c.pos_x >= self.w:
+            elif c.pos_x > self.w-1:
                 self.turn_results += [Result(Result.EXIT_RIGHT, c)]
                 self.creatures.remove(c)
             elif c.pos_y < 0:
                 self.turn_results += [Result(Result.EXIT_TOP, c)]
                 self.creatures.remove(c)
-            elif c.pos_y >= self.l:
+            elif c.pos_y > self.l-1:
                 self.turn_results += [Result(Result.EXIT_BOTTOM, c)]
                 self.creatures.remove(c)
             else:
@@ -63,7 +62,6 @@ class Arena:
                             
     def process_damage(self, creature, damage):
         creature.health -= damage
-        print creature, "damaged for", damage, "with", creature.health, "health left."
         if creature.health <= 0:
             self.creatures.remove(creature)
             self.place_creature(None, (creature.pos_x, creature.pos_y))
@@ -101,4 +99,3 @@ def damage(players, player_base, damage):
     for p in players:
         if p.base == player_base:
             p.health -= damage
-            print "player", p.player_number, "damaged for", damage
