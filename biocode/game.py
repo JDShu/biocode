@@ -69,6 +69,6 @@ class Game:
         self.turn += 1
         self.turn_start = time.time()
                
-if __name__ == "__main__":
+def run():
     g = Game(player.Type.HUMAN, player.Type.AI)
     g.main()
