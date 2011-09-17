@@ -34,3 +34,7 @@ class NoobSauce(Creature):
     def update(self):
         self.forward()
     
+class CustomCreature(Creature):
+    def __init__(self, player_number, direction, components):
+        pass
+    

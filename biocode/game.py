@@ -31,7 +31,8 @@ class Game:
         self.player_2.act(self.game_arena)
         if time.time() - self.turn_start > 1:
             self.do_turn()
-        self.drawer.draw(self.game_arena)
+        self.drawer.draw_arena(self.game_arena)
+        self.drawer.draw_panel(self.player_1.scanner.panel)
 
     def do_turn(self):
         self.game_arena.update()

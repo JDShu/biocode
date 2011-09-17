@@ -1,0 +1,1 @@
+LEFT, RIGHT, TOP, BOTTOM = range(4)

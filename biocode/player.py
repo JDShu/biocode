@@ -40,7 +40,7 @@ class Human(Player):
     def __init__(self, player_number, health=10):
         Player.__init__(self,player_number, health)
         self.scanner = ui.Scanner()
-                
+        
     def scan_input(self):
         self.action = self.scanner.scan()
         if self.action:
