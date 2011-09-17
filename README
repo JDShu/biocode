@@ -1,0 +1,6 @@
+The basic idea is that you create custom spliced creatures by using the arrows.
+
+Click on the bottom edge of the screen to spawn a creature. It will move on its own and
+damage enemy creatures and opponents depending on how it was configured. When it walks
+into the enemy side (the top) the opponent gets damaged. Similarly when their creatures
+walk into your side (bottom). Game ends an one player has zero or less health.
