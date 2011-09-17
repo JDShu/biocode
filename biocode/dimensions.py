@@ -1,2 +1,4 @@
 CELL_W = 50
 CELL_H = 50
+ARENA_W = 10
+ARENA_L = 10

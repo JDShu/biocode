@@ -1,10 +1,11 @@
 from collections import deque
 import base
+import dimensions
 
 class Arena:
 
-    def __init__(self, width, length):
-        self.w, self.l = width, length
+    def __init__(self):
+        self.w, self.l = dimensions.ARENA_W, dimensions.ARENA_L
         self.map = [[None]*self.w for i in xrange(self.l)]
         self.creatures = []
         self.finished = False

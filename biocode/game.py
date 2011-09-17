@@ -13,7 +13,7 @@ PLAYER_DICT = {player.Type.HUMAN: player.Human,
 class Game:
 
     def __init__(self, player_1, player_2):
-        self.game_arena = arena.Arena(10,10)
+        self.game_arena = arena.Arena()
         self.drawer = gfx.Drawer(self.game_arena)
         self.turn = 0
         self.turn_start = time.time()
